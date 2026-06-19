@@ -1,0 +1,151 @@
+- generic [ref=e22]:
+  - banner [ref=e23]:
+    - generic [ref=e24]:
+      - generic [ref=e25]:
+        - img [ref=e26]
+        - generic [ref=e29]: Habit Tracker
+      - generic [ref=e30]:
+        - generic [ref=e31]: demo@habittracker.dev
+        - button "Log out" [ref=e32] [cursor=pointer]:
+          - img [ref=e33]
+          - text: Log out
+  - main [ref=e36]:
+    - generic [ref=e37]:
+      - generic [ref=e38]:
+        - generic [ref=e39]:
+          - generic [ref=e40]:
+            - heading "Today’s Habits" [level=2] [ref=e41]
+            - button "New habit" [ref=e42] [cursor=pointer]:
+              - img [ref=e43]
+              - text: New habit
+          - list [ref=e44]:
+            - listitem [ref=e45]:
+              - button "Mark as done" [ref=e46] [cursor=pointer]:
+                - img [ref=e47]
+              - generic [ref=e49]:
+                - paragraph [ref=e50]: Drink 2L of water
+                - paragraph [ref=e51]: Stay hydrated through the day
+              - button "Delete habit" [ref=e52] [cursor=pointer]:
+                - img [ref=e53]
+            - listitem [ref=e56]:
+              - button "Mark as done" [ref=e57] [cursor=pointer]:
+                - img [ref=e58]
+              - generic [ref=e60]:
+                - paragraph [ref=e61]: Read 20 minutes
+                - paragraph [ref=e62]: Any book counts
+              - button "Delete habit" [ref=e63] [cursor=pointer]:
+                - img [ref=e64]
+            - listitem [ref=e67]:
+              - button "Mark as done" [ref=e68] [cursor=pointer]:
+                - img [ref=e69]
+              - generic [ref=e71]:
+                - paragraph [ref=e72]: Morning workout
+                - paragraph [ref=e73]: At least 15 minutes
+              - button "Delete habit" [ref=e74] [cursor=pointer]:
+                - img [ref=e75]
+        - generic [ref=e78]:
+          - generic [ref=e79]:
+            - img [ref=e80]
+            - heading "Progress & Streaks" [level=2] [ref=e83]
+          - list [ref=e84]:
+            - listitem [ref=e85]:
+              - generic [ref=e86]:
+                - generic [ref=e87]: Drink 2L of water
+                - generic [ref=e88]:
+                  - img [ref=e89]
+                  - text: 2d
+              - paragraph [ref=e93]: 63% this month
+            - listitem [ref=e94]:
+              - generic [ref=e95]:
+                - generic [ref=e96]: Read 20 minutes
+                - generic [ref=e97]:
+                  - img [ref=e98]
+                  - text: 3d
+              - paragraph [ref=e102]: 68% this month
+            - listitem [ref=e103]:
+              - generic [ref=e104]:
+                - generic [ref=e105]: Morning workout
+                - generic [ref=e106]:
+                  - img [ref=e107]
+                  - text: 3d
+              - paragraph [ref=e111]: 68% this month
+      - generic [ref=e113]:
+        - generic [ref=e114]:
+          - heading "June 2026" [level=2] [ref=e115]
+          - generic [ref=e116]:
+            - button "Previous month" [ref=e117] [cursor=pointer]:
+              - img [ref=e118]
+            - button "Next month" [ref=e120] [cursor=pointer]:
+              - img [ref=e121]
+        - generic [ref=e123]:
+          - generic [ref=e124]: Mon
+          - generic [ref=e125]: Tue
+          - generic [ref=e126]: Wed
+          - generic [ref=e127]: Thu
+          - generic [ref=e128]: Fri
+          - generic [ref=e129]: Sat
+          - generic [ref=e130]: Sun
+        - generic [ref=e131]:
+          - 'generic "2026-06-01: 2/3 completed" [ref=e132]':
+            - generic [ref=e133]: "1"
+          - 'generic "2026-06-02: 3/3 completed" [ref=e134]':
+            - generic [ref=e135]: "2"
+          - 'generic "2026-06-03: 1/3 completed" [ref=e136]':
+            - generic [ref=e137]: "3"
+          - 'generic "2026-06-04: 2/3 completed" [ref=e138]':
+            - generic [ref=e139]: "4"
+          - 'generic "2026-06-05: 3/3 completed" [ref=e140]':
+            - generic [ref=e141]: "5"
+          - 'generic "2026-06-06: 1/3 completed" [ref=e142]':
+            - generic [ref=e143]: "6"
+          - 'generic "2026-06-07: 2/3 completed" [ref=e144]':
+            - generic [ref=e145]: "7"
+          - 'generic "2026-06-08: 3/3 completed" [ref=e146]':
+            - generic [ref=e147]: "8"
+          - 'generic "2026-06-09: 1/3 completed" [ref=e148]':
+            - generic [ref=e149]: "9"
+          - 'generic "2026-06-10: 2/3 completed" [ref=e150]':
+            - generic [ref=e151]: "10"
+          - 'generic "2026-06-11: 3/3 completed" [ref=e152]':
+            - generic [ref=e153]: "11"
+          - 'generic "2026-06-12: 1/3 completed" [ref=e154]':
+            - generic [ref=e155]: "12"
+          - 'generic "2026-06-13: 2/3 completed" [ref=e156]':
+            - generic [ref=e157]: "13"
+          - 'generic "2026-06-14: 3/3 completed" [ref=e158]':
+            - generic [ref=e159]: "14"
+          - 'generic "2026-06-15: 1/3 completed" [ref=e160]':
+            - generic [ref=e161]: "15"
+          - 'generic "2026-06-16: 2/3 completed" [ref=e162]':
+            - generic [ref=e163]: "16"
+          - 'generic "2026-06-17: 3/3 completed" [ref=e164]':
+            - generic [ref=e165]: "17"
+          - 'generic "2026-06-18: 3/3 completed" [ref=e166]':
+            - generic [ref=e167]: "18"
+          - 'generic "2026-06-19: 0/3 completed" [ref=e168]':
+            - generic [ref=e169]: "19"
+          - 'generic "2026-06-20: 0/3 completed" [ref=e170]':
+            - generic [ref=e171]: "20"
+          - 'generic "2026-06-21: 0/3 completed" [ref=e172]':
+            - generic [ref=e173]: "21"
+          - 'generic "2026-06-22: 0/3 completed" [ref=e174]':
+            - generic [ref=e175]: "22"
+          - 'generic "2026-06-23: 0/3 completed" [ref=e176]':
+            - generic [ref=e177]: "23"
+          - 'generic "2026-06-24: 0/3 completed" [ref=e178]':
+            - generic [ref=e179]: "24"
+          - 'generic "2026-06-25: 0/3 completed" [ref=e180]':
+            - generic [ref=e181]: "25"
+          - 'generic "2026-06-26: 0/3 completed" [ref=e182]':
+            - generic [ref=e183]: "26"
+          - 'generic "2026-06-27: 0/3 completed" [ref=e184]':
+            - generic [ref=e185]: "27"
+          - 'generic "2026-06-28: 0/3 completed" [ref=e186]':
+            - generic [ref=e187]: "28"
+          - 'generic "2026-06-29: 0/3 completed" [ref=e188]':
+            - generic [ref=e189]: "29"
+          - 'generic "2026-06-30: 0/3 completed" [ref=e190]':
+            - generic [ref=e191]: "30"
+        - generic [ref=e192]:
+          - generic [ref=e193]: Less
+          - generic [ref=e198]: More

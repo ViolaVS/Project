@@ -1,0 +1,11 @@
+{
+  "name": "project_with_ai",
+  "version": "1.0.0",
+  "description": "A full-stack application for building and maintaining positive habits through daily tracking, a monthly heatmap calendar, and progress/streak analytics.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
