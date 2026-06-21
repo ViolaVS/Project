@@ -1,3 +1,4 @@
+
 # Habit Tracker
 
 A full-stack application for building and maintaining positive habits through
@@ -100,3 +101,4 @@ password: demo1234
 - To switch databases, change the `provider`/`url` in
   `backend/prisma/schema.prisma` and `.env`, then re-run `npm run prisma:push`.
 ```
+
