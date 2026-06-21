@@ -1,5 +1,6 @@
 import { create } from "zustand";
-import { api, getToken, setToken } from "../api/client";
+import { getToken, setToken } from "../api/client";
+import { authService } from "../services/authService";
 import type { User } from "../types";
 
 interface AuthState {
@@ -22,7 +23,7 @@ export const useAuthStore = create<AuthState>((set) => ({
   login: async (email, password) => {
     set({ loading: true, error: null });
     try {
-      const { token, user } = await api.login(email, password);
+      const { token, user } = await authService.login(email, password);
       setToken(token);
       set({ token, user, loading: false });
     } catch (e) {
@@ -33,7 +34,7 @@ export const useAuthStore = create<AuthState>((set) => ({
   register: async (email, password) => {
     set({ loading: true, error: null });
     try {
-      const { token, user } = await api.register(email, password);
+      const { token, user } = await authService.register(email, password);
       setToken(token);
       set({ token, user, loading: false });
     } catch (e) {
