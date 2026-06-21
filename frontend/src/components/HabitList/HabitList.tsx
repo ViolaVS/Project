@@ -1,18 +1,23 @@
 import { FormEvent, useState } from "react";
 import { Check, Plus, Trash2 } from "lucide-react";
+import Card from "../ui/Card";
+import { INPUT_CLASS, PRIMARY_BUTTON_CLASS } from "../ui/styles";
 import { useHabitStore } from "../../store/habitStore";
 import { todayISO } from "../../utils/date";
+import { isDoneOn } from "../../utils/habitLogs";
 
 // List of habits with a quick "done today" check-in plus an add/delete UI.
 export default function HabitList() {
-  const { habits, addHabit, removeHabit, toggle } = useHabitStore();
+  const habits = useHabitStore((s) => s.habits);
+  const addHabit = useHabitStore((s) => s.addHabit);
+  const removeHabit = useHabitStore((s) => s.removeHabit);
+  const toggle = useHabitStore((s) => s.toggle);
+
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [showForm, setShowForm] = useState(false);
 
   const today = todayISO();
-
-  const isDoneToday = (logs: { date: string }[]) => logs.some((l) => l.date === today);
 
   const submit = async (e: FormEvent) => {
     e.preventDefault();
@@ -24,7 +29,7 @@ export default function HabitList() {
   };
 
   return (
-    <section className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+    <Card className="p-6">
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-lg font-semibold">Today’s Habits</h2>
         <button
@@ -42,20 +47,17 @@ export default function HabitList() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Habit name (e.g. Meditate)"
-            className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className={`${INPUT_CLASS} text-sm`}
             autoFocus
           />
           <input
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Description (optional)"
-            className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className={`${INPUT_CLASS} text-sm`}
           />
           <div className="flex gap-2">
-            <button
-              type="submit"
-              className="bg-indigo-600 text-white rounded-lg px-4 py-1.5 text-sm font-medium hover:bg-indigo-700"
-            >
+            <button type="submit" className={`${PRIMARY_BUTTON_CLASS} px-4 py-1.5 text-sm`}>
               Add
             </button>
             <button
@@ -76,7 +78,7 @@ export default function HabitList() {
       ) : (
         <ul className="divide-y divide-slate-100">
           {habits.map((habit) => {
-            const done = isDoneToday(habit.logs);
+            const done = isDoneOn(habit, today);
             return (
               <li key={habit.id} className="flex items-center gap-3 py-3">
                 <button
@@ -112,6 +114,6 @@ export default function HabitList() {
           })}
         </ul>
       )}
-    </section>
+    </Card>
   );
 }

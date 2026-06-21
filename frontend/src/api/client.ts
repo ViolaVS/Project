@@ -1,18 +1,17 @@
-import type { Habit, User } from "../types";
-
-const TOKEN_KEY = "habit-tracker-token";
+import { STORAGE_KEYS } from "../constants";
 
 export function getToken(): string | null {
-  return localStorage.getItem(TOKEN_KEY);
+  return localStorage.getItem(STORAGE_KEYS.Token);
 }
 
 export function setToken(token: string | null) {
-  if (token) localStorage.setItem(TOKEN_KEY, token);
-  else localStorage.removeItem(TOKEN_KEY);
+  if (token) localStorage.setItem(STORAGE_KEYS.Token, token);
+  else localStorage.removeItem(STORAGE_KEYS.Token);
 }
 
-// Thin wrapper around fetch that attaches the auth token and parses JSON.
-async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
+// Thin transport: attaches the auth token, parses JSON, and surfaces a unified
+// Error from the `{ error }` payload. Service modules build on top of this.
+export async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
   const token = getToken();
   const headers: Record<string, string> = {
     "Content-Type": "application/json",
@@ -30,38 +29,3 @@ async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
   }
   return data as T;
 }
-
-interface AuthResponse {
-  token: string;
-  user: User;
-}
-
-export const api = {
-  register: (email: string, password: string) =>
-    request<AuthResponse>("/auth/register", {
-      method: "POST",
-      body: JSON.stringify({ email, password }),
-    }),
-
-  login: (email: string, password: string) =>
-    request<AuthResponse>("/auth/login", {
-      method: "POST",
-      body: JSON.stringify({ email, password }),
-    }),
-
-  getHabits: (month?: string) =>
-    request<{ month: string; habits: Habit[] }>(
-      `/habits${month ? `?month=${month}` : ""}`
-    ),
-
-  createHabit: (input: { name: string; description?: string; frequency?: string }) =>
-    request<Habit>("/habits", { method: "POST", body: JSON.stringify(input) }),
-
-  deleteHabit: (id: string) => request<void>(`/habits/${id}`, { method: "DELETE" }),
-
-  toggleHabit: (id: string, date: string) =>
-    request<{ habitId: string; date: string; status: string; completed: boolean }>(
-      `/habits/${id}/toggle`,
-      { method: "POST", body: JSON.stringify({ date }) }
-    ),
-};

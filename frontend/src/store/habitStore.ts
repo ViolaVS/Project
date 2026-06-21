@@ -1,7 +1,8 @@
 import { create } from "zustand";
-import { api } from "../api/client";
-import type { Habit } from "../types";
+import { habitService } from "../services/habitService";
+import type { Habit, HabitInput } from "../types";
 import { toMonthKey } from "../utils/date";
+import { applyToggle } from "../utils/habitLogs";
 
 interface HabitState {
   habits: Habit[];
@@ -12,7 +13,7 @@ interface HabitState {
 
   fetchHabits: () => Promise<void>;
   setViewMonth: (date: Date) => Promise<void>;
-  addHabit: (input: { name: string; description?: string; frequency?: string }) => Promise<void>;
+  addHabit: (input: HabitInput) => Promise<void>;
   removeHabit: (id: string) => Promise<void>;
   toggle: (habitId: string, date: string) => Promise<void>;
 }
@@ -31,7 +32,7 @@ export const useHabitStore = create<HabitState>((set, get) => ({
   fetchHabits: async () => {
     set({ loading: true, error: null });
     try {
-      const { habits } = await api.getHabits(toMonthKey(get().viewMonth));
+      const { habits } = await habitService.getHabits(toMonthKey(get().viewMonth));
       set({ habits, loading: false });
     } catch (e) {
       set({ error: (e as Error).message, loading: false });
@@ -46,7 +47,7 @@ export const useHabitStore = create<HabitState>((set, get) => ({
   addHabit: async (input) => {
     set({ error: null });
     try {
-      const habit = await api.createHabit(input);
+      const habit = await habitService.createHabit(input);
       set({ habits: [...get().habits, habit] });
     } catch (e) {
       set({ error: (e as Error).message });
@@ -55,7 +56,7 @@ export const useHabitStore = create<HabitState>((set, get) => ({
 
   removeHabit: async (id) => {
     try {
-      await api.deleteHabit(id);
+      await habitService.deleteHabit(id);
       set({ habits: get().habits.filter((h) => h.id !== id) });
     } catch (e) {
       set({ error: (e as Error).message });
@@ -63,25 +64,9 @@ export const useHabitStore = create<HabitState>((set, get) => ({
   },
 
   toggle: async (habitId, date) => {
-    // Optimistically update the local log set, then reconcile with the server.
     try {
-      const result = await api.toggleHabit(habitId, date);
-      set({
-        habits: get().habits.map((h) => {
-          if (h.id !== habitId) return h;
-          const without = h.logs.filter((l) => l.date !== date);
-          if (result.completed) {
-            return {
-              ...h,
-              logs: [
-                ...without,
-                { id: `${habitId}-${date}`, habitId, date, status: "completed" },
-              ],
-            };
-          }
-          return { ...h, logs: without };
-        }),
-      });
+      const { completed } = await habitService.toggleHabit(habitId, date);
+      set({ habits: applyToggle(get().habits, habitId, date, completed) });
     } catch (e) {
       set({ error: (e as Error).message });
     }

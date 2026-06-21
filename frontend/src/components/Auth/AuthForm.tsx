@@ -1,5 +1,7 @@
 import { FormEvent, useState } from "react";
 import { CheckCircle2, Loader2 } from "lucide-react";
+import Card from "../ui/Card";
+import { INPUT_CLASS, PRIMARY_BUTTON_CLASS } from "../ui/styles";
 import { useAuthStore } from "../../store/authStore";
 
 // Combined login / register screen shown when there is no auth token.
@@ -23,7 +25,7 @@ export default function AuthForm() {
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4">
-      <div className="w-full max-w-sm bg-white rounded-2xl shadow-sm border border-slate-200 p-8">
+      <Card className="w-full max-w-sm p-8">
         <div className="flex items-center gap-2 mb-6">
           <CheckCircle2 className="text-indigo-600" />
           <h1 className="text-xl font-semibold">Habit Tracker</h1>
@@ -41,7 +43,7 @@ export default function AuthForm() {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className={INPUT_CLASS}
               placeholder="you@example.com"
             />
           </div>
@@ -53,7 +55,7 @@ export default function AuthForm() {
               minLength={6}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className={INPUT_CLASS}
               placeholder="••••••••"
             />
           </div>
@@ -63,7 +65,7 @@ export default function AuthForm() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full flex items-center justify-center gap-2 bg-indigo-600 text-white rounded-lg py-2 font-medium hover:bg-indigo-700 disabled:opacity-60"
+            className={`${PRIMARY_BUTTON_CLASS} w-full flex items-center justify-center gap-2 py-2`}
           >
             {loading && <Loader2 className="animate-spin" size={18} />}
             {mode === "login" ? "Log in" : "Sign up"}
@@ -80,7 +82,7 @@ export default function AuthForm() {
         <p className="text-xs text-slate-400 mt-6 text-center">
           Demo login: demo@habittracker.dev / demo1234
         </p>
-      </div>
+      </Card>
     </div>
   );
 }
